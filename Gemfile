@@ -5,8 +5,10 @@ gem 'rails', '3.2.13'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'sqlite3', group: :developmet
 gem 'pg'
+gem 'rails_12factor', group: :production
+gem 'launchy'
 
 
 # Gems used only for assets and not required
@@ -14,6 +16,7 @@ gem 'pg'
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
   gem 'coffee-rails', '~> 3.2.1'
+  gem 'bootstrap-sass', '~> 3.0.1.0.rc'
 
   # See https://github.com/sstephenson/execjs#readme for more supported runtimes
   # gem 'therubyracer', :platforms => :ruby

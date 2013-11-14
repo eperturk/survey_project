@@ -11,5 +11,9 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
+//= require bootstrap
+//= require bootstrap/scrollspy
+//= require bootstrap/modal
+//= require bootstrap/dropdown
 //= require jquery_ujs
 //= require_tree .

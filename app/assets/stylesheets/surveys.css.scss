@@ -1,0 +1,21 @@
+// Place all the styles related to the surveys controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+#questions{
+	margin-top: 35px;
+	margin-left: 15px;
+	float: left;
+}
+
+#question-box{
+	margin-top: 50px;
+	width: 400px;
+	heigh: 400px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+#question-text{
+	padding-bottom: 15px;
+}

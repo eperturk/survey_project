@@ -1,0 +1,21 @@
+<h2>All Surveys</h2>
+
+<% @surveys.in_groups_of(4, false) do |survey_rows| %>
+	<div class="row">
+    <% for survey in survey_rows %>
+      <div class="col-xs-3">
+        <%= link_to(survey) do %>
+					<div class="primary panel-primary">
+						<div class="panel-heading" style="text-align: center">
+							<%= survey.title %>
+						</div>
+						<div class="panel-body">
+							Created: <%= survey.created_at.strftime("%Y-%m-%d") %>
+							Questions: <%= survey.questions.count %>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>
+<% end %>
