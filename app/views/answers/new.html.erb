@@ -1,0 +1,15 @@
+<p class="lead">New Answers for Question <%= @question.sequence %>.</p>
+<b>Question Text: </b><i><%= @question.text %></i><br />
+<b>Question kind: </b><i><%= @question.kind %></i><br />
+
+<%= form_tag(@answer) do %>
+<%= hidden_field_tag :question_id, @question.id %>
+<%= hidden_field_tag :survey_id, @question.survey.id %>
+	<table id='TextBoxesGroup'>
+		<tr>
+			<td><%= text_field_tag :text %></td>
+		</tr>
+	</table>
+	<%= submit_tag "Submit" %>
+<% end %>
+

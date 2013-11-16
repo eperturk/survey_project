@@ -1,2 +1,5 @@
-<h1>Surveys#edit</h1>
-<p>Find me in app/views/surveys/edit.html.erb</p>
+<p class="lead">Modify Survey Title</p>
+<%= form_for(@survey) do |f| %>
+<%= f.text_field :title, :value => @survey.title %>
+<%= f.submit %>
+<% end %>

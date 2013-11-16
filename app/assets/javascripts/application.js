@@ -16,4 +16,5 @@
 //= require bootstrap/modal
 //= require bootstrap/dropdown
 //= require jquery_ujs
+//= require answers
 //= require_tree .

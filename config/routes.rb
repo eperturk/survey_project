@@ -1,9 +1,8 @@
 SurveyProject::Application.routes.draw do
-  resources :surveys do
-    resources :questions do 
-      resources :answers
-    end
-  end
+  resources :surveys
+  resources :questions
+  resources :answers
+
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

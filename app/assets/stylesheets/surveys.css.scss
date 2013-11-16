@@ -10,7 +10,7 @@
 
 #question-box{
 	margin-top: 50px;
-	width: 400px;
+	width: 500px;
 	heigh: 400px;
 	margin-right: auto;
 	margin-left: auto;
@@ -18,4 +18,21 @@
 
 #question-text{
 	padding-bottom: 15px;
+}
+
+#question-head-left{
+	float: left;
+}
+
+#question-head-right{
+	float: right;
+}
+
+#question-heading{
+	height: 35px;
+}
+
+#survey-preview{
+	padding-left: 75px;
+	margin-top: 50px;
 }

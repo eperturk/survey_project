@@ -1,0 +1,18 @@
+<p class="lead">Question <%= @question.sequence %><i style="font-size: 14px;">(<%= @question.kind %>)</i>: <%= @question.text %></p>
+
+
+<%= form_tag(@answers.first, :method => :put) do %>
+	<table id='TextBoxesGroup', class="table">
+		<% @answers.each_with_index do |answer,i| %>
+			<tr>
+				<td><%= answer.sequence %>. <%= text_field_tag "answer_#{i+1}_text", answer.text %></td>
+			</tr>
+		<% end %>
+	</table>
+
+	<div class="form-group">
+		<a href="#" value="addButton" class="addButton">Click to Add An Answer Choice +</a>
+	</div>
+
+	<%= submit_tag "Submit" %>
+<% end %>

@@ -27,8 +27,12 @@ class SurveysController < ApplicationController
   end
 
   def edit
+    @survey = Survey.find(params[:id])
   end
 
   def update
+    @survey = Survey.find(params[:id])
+    @survey.update_attributes(params[:survey])
+    redirect_to survey_path(@survey)
   end
 end
