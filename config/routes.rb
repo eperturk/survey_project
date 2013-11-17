@@ -1,5 +1,10 @@
 SurveyProject::Application.routes.draw do
-  resources :surveys
+  resources :surveys do 
+    member do 
+      get 'take'
+      post 'submit'
+    end
+  end
   resources :questions
   resources :answers
 

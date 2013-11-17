@@ -30,6 +30,12 @@ class AnswersController < ApplicationController
 					answer = @question.answers.where(:sequence => i).first
 					answer.text = params["answer_#{i}_text"]
 					answer.save
+				elsif @question.kind == "freetext"
+					@question.answers.select{|a| a.sequence > 1}.each{|a| a.delete}
+					@question.save
+					new_answer = @question.answers.first
+					new_answer.text = ""
+					new_answer.save
 				else						
 					new_sequence = i
 					new_answer = @question.answers.create(:text => params["answer_#{i}_text"], :sequence => i)

@@ -1,6 +1,7 @@
 <h1>Survey: <%= @survey.title %> 
 	<%= link_to "Edit Title", edit_survey_path(@survey), :class => "btn btn-default btn-xs" %> 
 	<%= link_to "Preview Survey", survey_path(@survey), :class => "btn btn-default btn-xs" %>
+	<%= link_to "Take Survey", take_survey_path(@survey), :class => "btn btn-default btn-xs" %>
 </h1>
 <div id="questions">
 	<h4>Questions <%= link_to "Add +", new_question_path(:survey_id => @survey.id), :class => "btn btn-default btn-xs" %></h4>
@@ -53,15 +54,30 @@
 			<div class="panel-body">
 				<% @survey.questions.each do |question| %>
 					<table class="table">
-						<tr>
-							<td colspan="2"><%= question.sequence %>. <%= question.text %></td>
-						</tr>
-						<% question.answers.each do |answer| %>
+						
 							<tr>
-								<td width="3%"></td>
-								<td width="97%"><%= radio_button_tag "question_#{question.sequence}", "answer_#{answer.sequence}"  %> <%= answer.text %></td>
+								<td colspan="2"><%= question.sequence %>. <%= question.text %></td>
 							</tr>
+							<% question.answers.each do |answer| %>
+							<% if question.kind == "choose_one" %>
+								<tr>
+									<td width="3%"></td>
+									<td width="97%"><%= radio_button_tag "question_#{question.sequence}", "answer_#{answer.sequence}"  %> <%= answer.text %></td>
+								</tr>
+							<% elsif question.kind == "choose_many" %>
+								<tr> 
+									<td width="3%"></td>
+									<td width="97%"><%= check_box_tag "question_#{question.sequence}", "answer_#{answer.sequence}" %> <%= answer.text %></td>
+								</tr>
+							<% elsif question.kind == "freetext" %>
+								<tr>
+									<td width="3%"></td>
+									<td width="97"><%= text_field_tag "answer_#{answer.sequence}" %></td>
+								</tr>
+							<% end %>
+						
 						<% end %>
+					</table>
 				<% end %>
 			</div>
 		</div>

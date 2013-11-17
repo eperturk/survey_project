@@ -3,6 +3,8 @@
 	<%= @new_sequence %>
 	<%= f.label :text, "Question Text" %>
 	<%= f.text_field :text %>
+	<%= f.label :kind %>
+	<%= f.select(:kind, ["choose_one", "choose_many", "choose_one_with_freetext", "choose_many_with_freetext", "freetext"], :selected => @question.text) %>
 	<%= f.hidden_field :sequence, :value => @new_sequence %>
 	<%= f.hidden_field :survey_id, :value => @question.survey.id %>
 	<%= f.submit "Submit" %>

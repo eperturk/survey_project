@@ -35,4 +35,34 @@ class SurveysController < ApplicationController
     @survey.update_attributes(params[:survey])
     redirect_to survey_path(@survey)
   end
+
+  def take
+    @survey = Survey.find(params[:id])
+    @questions = @survey.questions
+    render :layout => 'take'
+  end
+
+  def submit
+    @survey = Survey.find(params[:id])
+    @questions = @survey.questions
+    response_hash = {}
+    @questions.each do |question|
+      if params["question_#{question.id}"]
+        response_hash["question_#{question.id}"] = params["question_#{question.id}"]
+      end
+    end
+    new_response = Response.create(:survey_id => @survey.id, :value => response_hash.to_json)
+    new_response.save
+    render :text => "Thank you for submitting your responses!"
+  end
+
 end
+
+
+
+
+
+
+
+
+

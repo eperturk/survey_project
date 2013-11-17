@@ -1,0 +1,35 @@
+<div class="panel panel-primary">
+	<div class="panel-heading" style="text-align: center">
+		<%= @survey.title %>
+	</div>
+	<div class="panel-body">
+		<%= form_tag(submit_survey_path(@survey)) do %>
+			<% @survey.questions.each do |question| %>
+				<table class="table">
+						<tr>
+							<td colspan="2"><%= question.sequence %>. <%= question.text %></td>
+						</tr>
+						<% question.answers.each do |answer| %>
+						<% if question.kind == "choose_one" %>
+							<tr>
+								<td width="3%"></td>
+								<td width="97%"><%= radio_button_tag "question_#{question.id}", "#{answer.text}"  %> <%= answer.text %></td>
+							</tr>
+						<% elsif question.kind == "choose_many" %>
+							<tr> 
+								<td width="3%"></td>
+								<td width="97%"><%= check_box_tag "question_#{question.id}[]", "#{answer.text}" %> <%= answer.text %></td>
+							</tr>
+						<% elsif question.kind == "freetext" %>
+							<tr>
+								<td width="3%"></td>
+								<td width="97"><%= text_field_tag "question_#{question.id}" %></td>
+							</tr>
+						<% end %>
+					<% end %>
+				</table>
+			<% end %>
+		<%= submit_tag "Submit Responses" %>
+		<% end %>
+	</div>
+</div>
