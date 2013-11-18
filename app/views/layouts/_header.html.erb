@@ -35,10 +35,10 @@
     </ul>
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">User Name<b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Logged in as <%= current_user.username %><b class="caret"></b></a>
         <ul class="dropdown-menu">
           <li><a href="#">Edit User</a></li>
-          <li><a href="#">Sign Out</a></li>
+          <li><%= link_to "Logout", :logout %></li>
           <li><a href="#">Contact Support</a></li>
         </ul>
       </li>
