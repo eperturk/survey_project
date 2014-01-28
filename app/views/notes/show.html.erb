@@ -1,0 +1,23 @@
+<p id="notice"><%= notice %></p>
+
+<div class="panel panel-primary">
+  <div class="panel-heading" id="note-heading">
+    <div id="title" >
+      <%= @note.title %>
+    </div>
+    <div id="department">
+      Department: <%= @note.department %>
+    </div>
+  </div>
+  <div class="panel-body">
+    <% if @note.segments.blank? %>
+      <%= link_to "Click here to add content", new_note_segment_path(@note) %>
+    <% else %>
+      <% @note.segments.each do |segment| %>
+        <%= segment.content.html_safe %>
+        <%= link_to "Edit Content", edit_note_segment_path(@note, segment) %>
+      <% end %>
+    <% end %>
+  </div>
+<div>
+

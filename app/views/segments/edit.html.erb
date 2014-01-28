@@ -1,0 +1,6 @@
+<h1>Editing segment</h1>
+<%= form_tag(note_segment_path(@note, @segment), :method => :put) do %>
+  <%= render 'form' %>
+  <%= submit_tag %>
+<% end %>
+

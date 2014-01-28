@@ -1,4 +1,12 @@
 SurveyProject::Application.routes.draw do
+
+  resources :patients
+
+
+  resources :notes do
+    resources :segments
+  end
+
   resources :surveys do 
     member do 
       get 'take'

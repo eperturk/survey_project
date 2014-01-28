@@ -17,4 +17,5 @@
 //= require bootstrap/dropdown
 //= require jquery_ujs
 //= require answers
+//= require tinymce-jquery
 //= require_tree .

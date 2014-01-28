@@ -2,12 +2,12 @@
 
 one:
   name: MyString
-  gender: MyString
-  dob: 2014-01-27
-  doctor: MyString
+  content: MyText
+  sequence: 1
+  note_id: 1
 
 two:
   name: MyString
-  gender: MyString
-  dob: 2014-01-27
-  doctor: MyString
+  content: MyText
+  sequence: 1
+  note_id: 1

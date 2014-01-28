@@ -1,0 +1,23 @@
+<h1>Available Notes</h1>
+
+
+
+<% @notes.in_groups_of(4, false) do |note_rows| %>
+  <div class="row">
+    <% for note in note_rows %>
+      <div class="col-xs-3">
+        <%= link_to(note) do %>
+          <div class="primary panel-primary">
+            <div class="panel-heading" style="text-align: center">
+              <%= note.title %>
+            </div>
+            <div class="panel-body">
+              Created: <%= note.created_at.strftime("%Y-%m-%d") %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
