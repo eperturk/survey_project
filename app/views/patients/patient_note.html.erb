@@ -1,0 +1,58 @@
+<p class="lead">
+  Available Response Sets
+  <table class="table table-hover table-striped">
+    <th>Survey</th>
+    <th>Date Taken</th>
+    <th>Status</th>
+    <th>Actions</th>
+    <th>Notes Templates for This Survey</th>
+    <th>Generate Note</th>
+    <% @patient.responses.each do |response_set| %>
+      <tr>
+        <td><%= response_set.survey_id %></td>
+        <td><%= response_set.created_at.strftime("%Y-%m-%d") %></td>
+        <td>Completed</td>
+        <td><%= link_to "View Responses", "" %></td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              View Template <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <% @notes.each do |note| %>
+                <li><%= link_to note.title, note_path(note) %></li>
+              <% end %>
+            </ul>
+          </div>
+        </td>
+        <td>
+          <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+              Generate Note <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+              <% @notes.each do |note| %>
+                <li><%= link_to note.title, patient_note_patient_path(@patient, :note => note.id, :response_set => response_set.id) %></li>
+              <% end %>
+            </ul>
+          </div>
+        </td>
+      </tr>
+    <% end %>
+  </table>
+</p>
+
+<% if @generated_note && params["response_set"] %>
+  <div class="panel panel-default">
+    <div class="panel panel-heading">
+      <%= @generated_note.title %>
+    </div>
+    <div class="panel panel-body">
+      <ul class="list-group">
+        <% @generated_note.segments.each do |segment| %>
+          <li class="list-group-item"><%= segment.populate_variables(params["response_set"],@patient).html_safe %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>

@@ -11,6 +11,7 @@ gem 'rails_12factor', group: :production
 gem 'launchy'
 gem 'sorcery'
 gem 'tinymce-rails'
+gem 'bootstrap-datepicker-rails'
 gem 'thin', group: :development
 
 # Gems used only for assets and not required

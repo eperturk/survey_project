@@ -15,6 +15,7 @@
 //= require bootstrap/scrollspy
 //= require bootstrap/modal
 //= require bootstrap/dropdown
+//= require bootstrap-datepicker
 //= require jquery_ujs
 //= require answers
 //= require tinymce-jquery

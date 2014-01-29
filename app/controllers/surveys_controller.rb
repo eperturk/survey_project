@@ -51,7 +51,8 @@ class SurveysController < ApplicationController
         response_hash["question_#{question.id}"] = params["question_#{question.id}"]
       end
     end
-    new_response = Response.create(:survey_id => @survey.id, :value => response_hash.to_json)
+    patient = Patient.find_patient(params)
+    new_response = patient.responses.create(:survey_id => @survey.id, :value => response_hash.to_json)
     new_response.save
     render :text => "Thank you for submitting your responses!"
   end

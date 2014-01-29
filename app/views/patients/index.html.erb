@@ -6,20 +6,20 @@
     <th>Gender</th>
     <th>Dob</th>
     <th>Doctor</th>
-    <th></th>
-    <th></th>
-    <th></th>
+    <th>Edit</th>
+    <th>Completed Surveys</th>
+    <th>Notes</th>
   </tr>
 
 <% @patients.each do |patient| %>
   <tr>
-    <td><%= patient.name %></td>
+    <td><%= patient.first_name %> <%= patient.last_name %></td>
     <td><%= patient.gender %></td>
     <td><%= patient.dob %></td>
     <td><%= patient.doctor %></td>
-    <td><%= link_to 'Show', patient %></td>
     <td><%= link_to 'Edit', edit_patient_path(patient) %></td>
-    <td><%= link_to 'Destroy', patient, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= patient.responses.count %></td>
+    <td><%= link_to "Build Note", patient_note_patient_path(patient) %></td>
   </tr>
 <% end %>
 </table>

@@ -4,6 +4,42 @@
 	</div>
 	<div class="panel-body">
 		<%= form_tag(submit_survey_path(@survey)) do %>
+			<div class="row">
+				<div class="lead col-sm-2">First Name</div>
+				<div class="col-sm-8">
+					<%= text_field_tag "patient_first_name", nil, :class => "form-control" %>
+				</div>
+			</div>
+			<div class="row">
+			<div class="lead col-sm-2">Middle Name</div>
+				<div class="col-sm-8">
+					<%= text_field_tag "patient_middle_name", nil, :class => "form-control" %>
+				</div>
+			</div>
+			<div class="row">
+			<div class="lead col-sm-2">Last Name</div>
+				<div class="col-sm-8">
+					<%= text_field_tag "patient_last_name", nil, :class => "form-control" %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="lead col-sm-2">Gender</div>
+				<div class="col-sm-3">
+					<%= select_tag "patient_gender", options_for_select(["Male", "Female"]), :class => "form-control" %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="lead col-sm-2">Date of Birth</div>
+				<div class="col-sm-3">
+					<%= text_field_tag "patient_dob", nil, :class => "form-control", "data-behaviour" => "datepicker", "data-date-start-view" => 'decade', "data-date-format" => "yyyy-mm-dd" %>
+				</div>
+			</div>
+			<div class="row">
+				<div class="lead col-sm-2">Doctor</div>
+				<div class="col-sm-3">
+					<%= select_tag "patient_doctor", options_for_select(["Dr. Robert Mayer", "Dr. Erdal Erturk", "Dr. Jean Joseph"]), :class => "form-control" %>
+				</div>
+			</div>
 			<% @survey.questions.each do |question| %>
 				<table class="table">
 						<tr>
@@ -33,3 +69,8 @@
 		<% end %>
 	</div>
 </div>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('[data-behaviour~=datepicker]').datepicker();
+  })
+</script>

@@ -1,6 +1,14 @@
 class PatientsController < ApplicationController
-  # GET /patients
-  # GET /patients.json
+
+  def patient_note
+    @patient = Patient.find(params[:id])
+    @response_sets = @patient.responses
+    @notes = @response_sets.map{|r| Survey.find(r.survey_id).notes }.flatten
+    if params["note"]
+      @generated_note = Note.find(params["note"])
+    end
+  end
+
   def index
     @patients = Patient.all
 
@@ -10,8 +18,6 @@ class PatientsController < ApplicationController
     end
   end
 
-  # GET /patients/1
-  # GET /patients/1.json
   def show
     @patient = Patient.find(params[:id])
 
@@ -21,8 +27,6 @@ class PatientsController < ApplicationController
     end
   end
 
-  # GET /patients/new
-  # GET /patients/new.json
   def new
     @patient = Patient.new
 
@@ -32,13 +36,10 @@ class PatientsController < ApplicationController
     end
   end
 
-  # GET /patients/1/edit
   def edit
     @patient = Patient.find(params[:id])
   end
 
-  # POST /patients
-  # POST /patients.json
   def create
     @patient = Patient.new(params[:patient])
 
@@ -53,8 +54,6 @@ class PatientsController < ApplicationController
     end
   end
 
-  # PUT /patients/1
-  # PUT /patients/1.json
   def update
     @patient = Patient.find(params[:id])
 
@@ -69,8 +68,6 @@ class PatientsController < ApplicationController
     end
   end
 
-  # DELETE /patients/1
-  # DELETE /patients/1.json
   def destroy
     @patient = Patient.find(params[:id])
     @patient.destroy
