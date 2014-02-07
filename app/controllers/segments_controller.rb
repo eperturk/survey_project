@@ -19,8 +19,8 @@ class SegmentsController < ApplicationController
   end
 
   def new
-    @segment = Segment.new
     @note = Note.find(params[:note_id])
+    @segment = @note.segments.build
 
     respond_to do |format|
       format.html # new.html.erb

@@ -7,12 +7,13 @@
     <% for note in note_rows %>
       <div class="col-xs-3">
         <%= link_to(note) do %>
-          <div class="primary panel-primary">
+          <div class="panel panel-primary">
             <div class="panel-heading" style="text-align: center">
               <%= note.title %>
             </div>
             <div class="panel-body">
-              Created: <%= note.created_at.strftime("%Y-%m-%d") %>
+              Segments: <%= note.segments.count %><br />
+              Created: <%= note.created_at.strftime("%m/%d/%Y") %>
             </div>
           </div>
         <% end %>

@@ -1,5 +1,6 @@
 <h1>Editing segment</h1>
 <%= form_tag(note_segment_path(@note, @segment), :method => :put) do %>
+  <%= hidden_field_tag :answers, @note.survey.questions.count %>
   <%= render 'form' %>
   <%= submit_tag %>
 <% end %>
