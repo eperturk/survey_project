@@ -11,11 +11,11 @@ class SurveysController < ApplicationController
 
   def show
   	@survey = Survey.find(params[:id])
-  	@questions = @survey.questions
+  	@questions = @survey.questions.sort_by(&:sequence)
     if params["new_question"].present?
       @new_question_sequence = params["new_question"]
       @survey.questions.create(sequence: @new_question_sequence, kind: "choose_one")
-      @questions = @survey.questions
+      @questions = @survey.questions.sort_by(&:sequence)
       @add_question = true
     end
   end
@@ -40,6 +40,7 @@ class SurveysController < ApplicationController
   def take
     @survey = Survey.find(params[:id])
     @questions = @survey.questions
+    @patients = Patient.all
     render :layout => 'take'
   end
 
@@ -52,7 +53,7 @@ class SurveysController < ApplicationController
         response_hash["question_#{question.id}"] = params["question_#{question.id}"]
       end
     end
-    patient = Patient.find_patient(params)
+    patient = Patient.find_by_id(params['chosen_patient'])
     new_response = patient.responses.create(:survey_id => @survey.id, :value => response_hash.to_json)
     new_response.save
     render :text => "Thank you for submitting your responses!"

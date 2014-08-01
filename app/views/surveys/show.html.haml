@@ -13,7 +13,7 @@
     .panel-heading{:style => "text-align: center"}
       = @survey.title
     .panel-body
-      - @survey.questions.each do |question|
+      - @survey.questions.sort_by(&:sequence).each do |question|
         %table.table
           %tr
             %td{:colspan => "2"}

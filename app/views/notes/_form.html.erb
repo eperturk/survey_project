@@ -19,6 +19,10 @@
     <%= f.label :department %><br />
     <%= f.text_field :department %>
   </div>
+  <div class="field">
+    <%= label_tag :survey_id, "Associate Survey" %>
+    <%= select_tag "note[survey_id]", options_from_collection_for_select(Survey.all, :id, :title), include_blank: true %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>

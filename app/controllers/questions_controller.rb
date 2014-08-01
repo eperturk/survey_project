@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
 		if params[:answers].present?
 			@question.update_answer_choices(params[:answers])
 		end
-		redirect_to survey_path(@survey, :question => @question.id)
+		redirect_to survey_path(@survey)
 	end
 
 	def show
