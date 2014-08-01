@@ -3,6 +3,7 @@ class Survey < ActiveRecord::Base
   has_many :questions, dependent: :destroy
   has_many :answers, through: :questions
   has_many :notes
+  has_many :responses
 
   def next_question_sequence
     if self.questions.present?

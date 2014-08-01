@@ -3,7 +3,7 @@ class PatientsController < ApplicationController
   def patient_note
     @patient = Patient.find(params[:id])
     @response_sets = @patient.responses
-    @notes = @response_sets.map{|r| Survey.find(r.survey_id).notes }.flatten
+    @notes = @response_sets.map{|response_set| response_set.survey.notes}.flatten.uniq
     if params["note"]
       @generated_note = Note.find(params["note"])
     end
