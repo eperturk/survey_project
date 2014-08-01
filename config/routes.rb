@@ -15,9 +15,9 @@ SurveyProject::Application.routes.draw do
       get 'take'
       post 'submit'
     end
+    resources :questions
+    resources :answers
   end
-  resources :questions
-  resources :answers
 
   resources :main
   resources :user_sessions

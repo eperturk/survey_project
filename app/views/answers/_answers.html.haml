@@ -1,0 +1,9 @@
+- if @question.answers.present?
+  - @question.answers.each do |answer_choice|
+    .row{:id => "answer-row-#{answer_choice.id}"}
+      %div.col-xs-1{style: "text-align: right;"}
+        = "#{answer_choice.sequence}) "
+      %div.col-xs-8
+        = text_field_tag "answers[#{answer_choice.sequence}]", answer_choice.text, class: "form-control"
+      %div.col-xs-1.remove_buttons
+        = link_to "Remove", edit_survey_question_path(@survey, @question, remove_answer: answer_choice.id), remote: true, class: "btn btn-danger"

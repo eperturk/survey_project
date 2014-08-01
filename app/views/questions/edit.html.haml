@@ -1,0 +1,20 @@
+%p.lead
+  Edit Question #{@question.sequence}
+.form
+  = form_tag(survey_question_path(@survey, @question), action: "update", method: "put") do
+    .field
+      = label_tag "Question Text"
+      = text_area_tag "question_text", @question.text, class: 'form-control', rows: 2
+    .field
+      = label_tag "Question Kind"
+      = select_tag "question_kind", options_for_select(["choose_one", "choose_many", "choose_one_with_freetext", "choose_many_with_freetext", "freetext"], selected: @question.kind), class: "form-control"
+    %hr
+    %div#add-answer-button
+      = link_to "Add Answer Choice +", edit_survey_question_path(@survey, @question, add_answer: @next_seq), remote: true, class: "btn btn-warning"
+    %p
+      %div#answer-choices
+        = render 'answers/answers', question: @question
+    %span
+      = link_to "<- Go Back", survey_path(@survey), class: "btn btn-default"
+      = submit_tag "Submit", class: "btn btn-primary"
+    

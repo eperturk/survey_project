@@ -1,4 +1,5 @@
 class SurveysController < ApplicationController
+  respond_to :html, :js
 
 	def new
 		@survey = Survey.new
@@ -11,19 +12,19 @@ class SurveysController < ApplicationController
   def show
   	@survey = Survey.find(params[:id])
   	@questions = @survey.questions
-  	if params[:question]
-  		@question = Question.find(params[:question])
-  		if @question.answers 
-  			@answers = @question.answers
-  		end
-  	end
+    if params["new_question"].present?
+      @new_question_sequence = params["new_question"]
+      @survey.questions.create(sequence: @new_question_sequence, kind: "choose_one")
+      @questions = @survey.questions
+      @add_question = true
+    end
   end
 
   def create
   	@survey = Survey.create(params[:survey])
   	@survey.save
-  	default_question = @survey.questions.create!(:text => "Sample Question", :kind => "multiple_choice")
-  	redirect_to surveys_path, :notifice => "Survey Successfully Created"
+  	default_question = @survey.questions.create!(:text => "Sample Question", :kind => "multiple_choice", sequence: 1)
+  	redirect_to surveys_path, :notice => "Survey Successfully Created"
   end
 
   def edit

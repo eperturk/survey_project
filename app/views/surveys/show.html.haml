@@ -1,0 +1,38 @@
+%h1
+  Survey: #{@survey.title}
+  \#{link_to "Edit Title", edit_survey_path(@survey), :class => "btn btn-default btn-xs"}
+  \#{link_to "Preview Survey", survey_path(@survey), :class => "btn btn-default btn-xs"}
+  \#{link_to "Take Survey", take_survey_path(@survey), :class => "btn btn-default btn-xs"}
+#questions
+  %h4
+    Questions
+  %ul.list-group#questions-list
+    = render "questions/question_list", questions: @questions
+#survey-preview.col-xs-9
+  .primary.panel-primary
+    .panel-heading{:style => "text-align: center"}
+      = @survey.title
+    .panel-body
+      - @survey.questions.each do |question|
+        %table.table
+          %tr
+            %td{:colspan => "2"}
+              = question.sequence
+              \. #{question.text}
+          - question.answers.each do |answer|
+            - if question.kind == "choose_one"
+              %tr
+                %td{:width => "3%"}
+                %td{:width => "97%"}
+                  = radio_button_tag "question_#{question.sequence}", "answer_#{answer.sequence}"
+                  = answer.text
+            - elsif question.kind == "choose_many"
+              %tr
+                %td{:width => "3%"}
+                %td{:width => "97%"}
+                  = check_box_tag "question_#{question.sequence}", "answer_#{answer.sequence}"
+                  = answer.text
+            - elsif question.kind == "freetext"
+              %tr
+                %td{:width => "3%"}
+                %td{:width => "97"}= text_field_tag "answer_#{answer.sequence}"

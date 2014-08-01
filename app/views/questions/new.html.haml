@@ -1,0 +1,21 @@
+%h1
+  Create A New Question for Survey: #{@survey.title}
+= form_for([@survey, @question]) do |f|
+  %form.horizontal-form{role: "form"}
+    .form-group
+      %label.col-sm-2.control-label
+        = "#{@new_sequence}) "
+        = f.label :text, "Question Text"
+      %div.col-sm-8
+        = f.text_field :text, class: "form-control"
+      %br
+    .form-group
+      %label.col-sm-2.control-label
+        = f.label :kind
+      %div.col-sm-8
+        = f.select(:kind, ["choose_one", "choose_many", "choose_one_with_freetext", "choose_many_with_freetext", "freetext"], :selected => @question.text, :class => "form-control")
+      = f.hidden_field :sequence, :value => @new_sequence
+      = f.hidden_field :survey_id, :value => @question.survey.id
+      %br
+    .form-group
+      = f.submit "Submit", :class => "btn btn-primary"

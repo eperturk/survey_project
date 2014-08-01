@@ -1,0 +1,11 @@
+%h2 All Surveys
+- @surveys.in_groups_of(4, false) do |survey_rows|
+  .row
+    - for survey in survey_rows
+      .col-xs-3
+        = link_to(survey) do
+          .panel.panel-primary
+            .panel-heading{:style => "text-align: center"}
+              = survey.title
+            .panel-body
+              Questions: #{survey.questions.count}

@@ -1,0 +1,7 @@
+%h2 New Survey
+.form-wrap
+  = form_for @survey do |f|
+    #field
+      = f.label :title
+      = f.text_field :title
+    = f.submit "Submit", :class => "btn"

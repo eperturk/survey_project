@@ -1,0 +1,5 @@
+=link_to "Add Question", survey_path(@survey, new_question: @survey.next_question_sequence), remote: true, :class => "btn btn-warning btn-xs"
+- if @questions.present?
+  - @questions.each do |q|
+    %li.list-group-item
+      = link_to "Question ##{q.sequence}", edit_survey_question_path(@survey, q)

@@ -1,0 +1,8 @@
+<%- if @add_answer %>
+  $('#answer-choices').append("<%= j render 'answers/new_answer' %>");
+  $('#add-answer-button').empty().append('<%= link_to "Add Answer Choice +", edit_survey_question_path(@survey, @question, add_answer: @next_seq), remote: true, class: "btn btn-warning" %>');
+  $('.remove_buttons').empty().append('<%= link_to "Remove", edit_survey_question_path(@survey, @question), remote: true, class: "btn btn-danger", disabled: "disabled" %>');
+<% end %>
+<%- if @remove_answer %>
+  $('#answer-choices').empty().append("<%= j render 'answers/answers', question: @question %>");
+<% end %>

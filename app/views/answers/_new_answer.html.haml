@@ -1,0 +1,5 @@
+.row
+  .col-xs-1{style: "text-align: right;"}
+    = "#{@next_seq-1}) "
+  .col-xs-8
+    = text_field_tag "answers[#{@next_seq-1}]", nil, class: "form-control"

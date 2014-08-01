@@ -13,6 +13,7 @@ gem 'sorcery'
 gem 'tinymce-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'thin', group: :development
+gem 'haml'
 
 # Gems used only for assets and not required
 # in production environments by default.

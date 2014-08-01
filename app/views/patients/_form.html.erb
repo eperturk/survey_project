@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
+    <%= f.select(:gender, ["Male", "Female"], include_blank: true)  %>
   </div>
   <div class="field">
     <%= f.label :dob %><br />

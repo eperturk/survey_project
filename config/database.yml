@@ -1,28 +1,23 @@
-# SQLite version 3.x
-#   gem install sqlite3
-#
-#   Ensure the SQLite 3 gem is defined in your Gemfile
-#   gem 'sqlite3'
 development:
-  adapter: sqlite3
-  database: db/development.sqlite3
+  adapter: postgresql
+  encoding: unicode
+  database: survey_project_dev
   pool: 5
-  timeout: 5000
+  username: postgres
+  password: password
 
-# Warning: The database defined as "test" will be erased and
-# re-generated from your development database when you run "rake".
 test:
   adapter: postgresql
   encoding: unicode
-  database: cqa_test
+  database: survey_project_test
   pool: 5
-  username: testuser
+  username: postgres
   password: password
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: cqa_production
+  database: survey_project_production
   pool: 5
-  username: testuser
+  username: postgres
   password: password
